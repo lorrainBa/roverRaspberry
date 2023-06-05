@@ -212,8 +212,8 @@ class DeepPiCar(object):
         self.front_wheels.turning_offset = 22  # calibrate servo to center
         self.front_wheels.turn(90)  # Steering Range is 45 (left) - 90 (center) - 135 (right)
 
-
-        logging.debug('deep picar end to end lane follower')
+        logging.debug('Code de test')
+        """logging.debug('deep picar end to end lane follower')"""
         logging.debug('________________________________________')
         logging.debug('________________________________________')
         """self.lane_follower = EndToEndLaneFollower(self)"""
@@ -227,8 +227,9 @@ class DeepPiCar(object):
         logging.info('Created a DeepPiCar')
 
     def drive(self,speedInput=40):
-        for i in range (100):
-            self.back_wheels.speed = speedInput
+        for i in range (50):
+            print("Current speed", i)
+            self.back_wheels.speed = i
         self.front_wheels.turning_offset = 44
             
 def main():
