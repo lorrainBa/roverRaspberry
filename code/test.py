@@ -5,6 +5,7 @@ import logging
 import math
 
 import picar
+import datetime
 #Get the image
 frame = cv2.imread('../data/ligneBleu.png')
 height, width, _ = frame.shape
@@ -215,7 +216,7 @@ class DeepPiCar(object):
         logging.debug('deep picar end to end lane follower')
         logging.debug('________________________________________')
         logging.debug('________________________________________')
-        self.lane_follower = EndToEndLaneFollower(self)
+        """self.lane_follower = EndToEndLaneFollower(self)"""
 
         self.fourcc = cv2.VideoWriter_fourcc(*'XVID')
         datestr = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
@@ -226,7 +227,9 @@ class DeepPiCar(object):
         logging.info('Created a DeepPiCar')
 
     def drive(self,speedInput=40):
+        for i in range (100):
             self.back_wheels.speed = speedInput
+        self.front_wheels.turning_offset = 44
             
 def main():
     with DeepPiCar() as car:
