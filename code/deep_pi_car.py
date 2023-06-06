@@ -77,7 +77,7 @@ class DeepPiCar(object):
     def cleanup(self):
         """ Reset the hardware"""
         logging.info('Stopping the car, resetting hardware.')
-        self.back_wheels.speed = 20
+        self.back_wheels.speed = 0
         self.front_wheels.turn(90)
         self.camera.release()
         self.video_orig.release()
@@ -94,7 +94,7 @@ class DeepPiCar(object):
         """
 
         logging.info('Starting to drive at speed %s...' % speed)
-        self.back_wheels.speed = speed
+        self.back_wheels.speed = 0
         i = 0
         while self.camera.isOpened():
             _, image_lane = self.camera.read()
