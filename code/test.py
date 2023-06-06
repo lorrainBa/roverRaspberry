@@ -125,8 +125,7 @@ def display_lines(frame, lines, line_color=(0, 255, 0), line_width=14):
 
 lane_lines = detect_lane(frame)
 lane_lines_image = display_lines(frame, lane_lines)
-cv2.imshow("lane lines", lane_lines_image)
-cv2.waitKey(0)
+
 
 
 def display_heading_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5 ):
@@ -236,4 +235,6 @@ def main():
     with DeepPiCar() as car:
         car.drive(40)
 
-main()
+
+if __name__ == '__main__':
+    main()
