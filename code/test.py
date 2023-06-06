@@ -232,8 +232,8 @@ class DeepPiCar(object):
         self.front_wheels.turning_offset = 44
             
 def main():
-    with DeepPiCar() as car:
-        car.drive(40)
+    car = DeepPiCar()
+    car.drive(40)
 
 
 if __name__ == '__main__':
