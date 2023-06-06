@@ -6,6 +6,8 @@ import math
 
 import picar
 import datetime
+
+from hand_coded_lane_follower import HandCodedLaneFollower
 #Get the image
 
 
@@ -47,10 +49,10 @@ class DeepPiCar(object):
         self.front_wheels.turn(90)  # Steering Range is 45 (left) - 90 (center) - 135 (right)
 
         logging.debug('Code de test')
-        """logging.debug('deep picar end to end lane follower')"""
+        logging.debug('deep picar end to end lane follower')
         logging.debug('________________________________________')
         logging.debug('________________________________________')
-        """self.lane_follower = EndToEndLaneFollower(self)"""
+        self.lane_follower = HandCodedLaneFollower(self)
 
         self.fourcc = cv2.VideoWriter_fourcc(*'XVID')
         datestr = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
@@ -104,12 +106,23 @@ class DeepPiCar(object):
             show_image('Detected Objects', image_objs)
 
             image_lane = self.follow_lane(image_lane)
-            self.video_lane.write(image_lane)
+            """self.video_lane.write(image_lane)"""
             show_image('Lane Lines', image_lane)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 self.cleanup()
                 break
+            
+            
+    def follow_lane(self, image):
+        image,stop = self.lane_follower.follow_lane(image)
+        if stop :
+            logging.info('No lane lines detected, nothing to do ################################################.')
+            logging.info('No lane lines detected, nothing to do.################################################. fd')
+            self.back_wheels.speed = 0
+            self.front_wheels.turn(90)
+        return image
+
             
 def show_image(title, frame, show=_SHOW_IMAGE):
     if show:
