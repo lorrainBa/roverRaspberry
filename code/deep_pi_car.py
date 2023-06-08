@@ -65,7 +65,7 @@ class DeepPiCar(object):
         
         
     def create_video_recorder(self, path):
-        print("-------------------------------------------------------------------------------------")
+        print("-----------------------------------------allo--------------------------------------------")
         return cv2.VideoWriter(path, self.fourcc, 20.0, (self.__SCREEN_WIDTH, self.__SCREEN_HEIGHT))
     
     def __enter__(self):
@@ -142,6 +142,6 @@ def main():
 
 if __name__ == '__main__':
     
-    logging.basicConfig(level=logging.INFO, format='%(levelname)-5s:%(asctime)s: %(message)s')
+    logging.basicConfig(level=logging.WARNING, format='%(levelname)-5s:%(asctime)s: %(message)s')
     
     main()
