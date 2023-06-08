@@ -280,8 +280,8 @@ def make_points(frame, line):
 
     # bound the coordinates within the frame
     print("slope:  ", slope)
-    x1 = max(-width, min(2 * width, int((y1 - intercept) / slope+0.0000001)))
-    x2 = max(-width, min(2 * width, int((y2 - intercept) / slope+0.0000001)))
+    x1 = max(-width, min(2 * width, int((y1 - intercept) / (slope+0.0000001))))
+    x2 = max(-width, min(2 * width, int((y2 - intercept) / (slope+0.0000001))))
     return [[x1, y1, x2, y2]]
 
 
