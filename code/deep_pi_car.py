@@ -65,6 +65,7 @@ class DeepPiCar(object):
         
         
     def create_video_recorder(self, path):
+        print("-------------------------------------------------------------------------------------")
         return cv2.VideoWriter(path, self.fourcc, 20.0, (self.__SCREEN_WIDTH, self.__SCREEN_HEIGHT))
     
     def __enter__(self):
