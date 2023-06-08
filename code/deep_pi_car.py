@@ -65,7 +65,6 @@ class DeepPiCar(object):
         
         
     def create_video_recorder(self, path):
-        print("-----------------------------------------allo--------------------------------------------")
         return cv2.VideoWriter(path, self.fourcc, 20.0, (self.__SCREEN_WIDTH, self.__SCREEN_HEIGHT))
     
     def __enter__(self):
@@ -87,8 +86,9 @@ class DeepPiCar(object):
         self.front_wheels.turn(90)
         self.camera.release()
         """self.video_orig.release()
-        self.video_lane.release()
         """
+        self.video_lane.release()
+        
         cv2.destroyAllWindows()
 
 
