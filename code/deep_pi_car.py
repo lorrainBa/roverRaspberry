@@ -88,7 +88,7 @@ class DeepPiCar(object):
         """self.video_orig.release()
         """
         self.video_lane.release()
-        
+        print("finito")
         cv2.destroyAllWindows()
 
 
