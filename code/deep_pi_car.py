@@ -86,7 +86,7 @@ class DeepPiCar(object):
         cv2.destroyAllWindows()
 
 
-    def drive(self,speed=40):
+    def drive(self,speed=5):
         """ Main entry point of the car, and put it in drive mode
 
         Keyword arguments:
