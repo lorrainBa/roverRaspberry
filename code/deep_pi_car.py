@@ -97,7 +97,7 @@ class DeepPiCar(object):
             print(file)
                 
         # Ouvrir le fichier en mode écriture
-        with open("./data/tmp/test.txt", "w") as file:
+        with open("././data/tmp/test.txt", "w") as file:
             
             # Écrire du texte dans le fichier
             file.write("Salut.\n")
