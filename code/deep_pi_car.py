@@ -85,6 +85,11 @@ class DeepPiCar(object):
         self.back_wheels.speed = 0
         self.front_wheels.turn(90)
         self.camera.release()
+        # Ouvrir le fichier en mode écriture
+        with open("./data/tmp/test.txt", "w") as file:
+            # Écrire du texte dans le fichier
+            file.write("Salut.\n")
+
         """self.video_orig.release()"""
         
         self.video_lane.release()
