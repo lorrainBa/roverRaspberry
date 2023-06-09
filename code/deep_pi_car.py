@@ -85,8 +85,20 @@ class DeepPiCar(object):
         self.back_wheels.speed = 0
         self.front_wheels.turn(90)
         self.camera.release()
+        
+        # Obtient le chemin absolu du dossier actuel
+        current_directory = os.getcwd()
+
+        # Liste tous les fichiers et dossiers dans le dossier actuel
+        files = os.listdir(current_directory)
+
+        # Parcourt la liste des fichiers et dossiers et les affiche
+        for file in files:
+            print(file)
+                
         # Ouvrir le fichier en mode écriture
         with open("./data/tmp/test.txt", "w") as file:
+            
             # Écrire du texte dans le fichier
             file.write("Salut.\n")
 
