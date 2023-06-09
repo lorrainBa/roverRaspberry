@@ -139,7 +139,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
             
 def main():
     car = DeepPiCar()
-    """car.drive(40)"""
+    car.drive(10)
 
 
 if __name__ == '__main__':
