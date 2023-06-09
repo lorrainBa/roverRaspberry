@@ -90,12 +90,14 @@ class DeepPiCar(object):
         
 
         # Liste tous les fichiers et dossiers dans le dossier actuel
-        files = os.listdir("./")
+        files = os.listdir("././")
 
         # Parcourt la liste des fichiers et dossiers et les affiche
+        print("-----")
         for file in files:
             print(file)
-                
+        print("-----")
+             
         # Ouvrir le fichier en mode écriture
         with open("./data/tmp/test.txt", "w") as file:
             
