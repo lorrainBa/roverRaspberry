@@ -32,11 +32,11 @@ class DeepPiCar(object):
         self.camera.set(4, self.__SCREEN_HEIGHT)
 
         self.pan_servo = picar.Servo.Servo(1)
-        self.pan_servo.offset = -10  # calibrate servo to center
+        self.pan_servo.offset = -30  # calibrate servo to center
         self.pan_servo.write(90)
 
         self.tilt_servo = picar.Servo.Servo(2)
-        self.tilt_servo.offset = 20  # calibrate servo to center
+        self.tilt_servo.offset = 10  # calibrate servo to center
         self.tilt_servo.write(90)
 
         logging.debug('Set up back wheels')
