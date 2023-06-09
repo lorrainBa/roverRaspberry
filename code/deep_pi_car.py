@@ -58,7 +58,7 @@ class DeepPiCar(object):
         datestr = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
         """self.video_orig = self.create_video_recorder('./data/tmp/car_video%s.avi' % datestr)
         """
-        self.video_lane = self.create_video_recorder('./data/tmp/car_video_lane%s.avi' % datestr)
+        self.video_lane = self.create_video_recorder('../data/tmp/car_video_lane%s.avi' % datestr)
         
 
         logging.info('Created a DeepPiCar')
@@ -86,23 +86,7 @@ class DeepPiCar(object):
         self.front_wheels.turn(90)
         self.camera.release()
         
-        # Obtient le chemin absolu du dossier actuel
-        
 
-        # Liste tous les fichiers et dossiers dans le dossier actuel
-        files = os.listdir("../")
-
-        # Parcourt la liste des fichiers et dossiers et les affiche
-        print("-----")
-        for file in files:
-            print(file)
-        print("-----")
-             
-        # Ouvrir le fichier en mode écriture
-        with open("../data/tmp/test.txt", "w") as file:
-            
-            # Écrire du texte dans le fichier
-            file.write("Salut.\n")
 
         """self.video_orig.release()"""
         
