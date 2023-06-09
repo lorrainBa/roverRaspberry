@@ -90,7 +90,7 @@ class DeepPiCar(object):
         
 
         # Liste tous les fichiers et dossiers dans le dossier actuel
-        files = os.listdir("././")
+        files = os.listdir("../")
 
         # Parcourt la liste des fichiers et dossiers et les affiche
         print("-----")
@@ -99,7 +99,7 @@ class DeepPiCar(object):
         print("-----")
              
         # Ouvrir le fichier en mode écriture
-        with open("./data/tmp/test.txt", "w") as file:
+        with open("../data/tmp/test.txt", "w") as file:
             
             # Écrire du texte dans le fichier
             file.write("Salut.\n")
