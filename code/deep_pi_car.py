@@ -10,13 +10,13 @@ import datetime
 from hand_coded_lane_follower import HandCodedLaneFollower
 
 #Accelerator
-"""import tflite_runtime.interpreter as tflite"""
+
 
 
 #Get the image
 
 
-_SHOW_IMAGE = True
+_SHOW_IMAGE = False
 
 
 class DeepPiCar(object):
