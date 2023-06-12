@@ -8,7 +8,7 @@ import sys
 
 
 _SHOW_IMAGE = False
-
+showSlope = False
 
 class HandCodedLaneFollower(object):
 
@@ -275,13 +275,15 @@ def average_slope_intercept(frame, line_segments):
 
 
 def make_points(frame, line):
+    global showSlope
     height, width, _ = frame.shape
     slope, intercept = line
     y1 = height  # bottom of the frame
     y2 = int(y1 * 1 / 2)  # make points from middle of the frame down
 
     # bound the coordinates within the frame
-    print("slope:  ", slope)
+    if showSlope:
+        print("slope:  ", slope)
     x1 = max(-width, min(2 * width, int((y1 - intercept) / (slope+0.0000001))))
     x2 = max(-width, min(2 * width, int((y2 - intercept) / (slope+0.0000001))))
     return [[x1, y1, x2, y2]]

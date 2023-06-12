@@ -122,7 +122,7 @@ class DeepPiCar(object):
             image_lane = self.follow_lane(image_lane)
             self.video_lane.write(image_lane)
             show_image('Lane Lines', image_lane)
-
+            print("decision")
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         self.cleanup()
@@ -149,6 +149,6 @@ def main():
 
 if __name__ == '__main__':
     
-    logging.basicConfig(level=logging.WARNING, format='%(levelname)-5s:%(asctime)s: %(message)s')
+    logging.basicConfig(level=logging.ERROR, format='%(levelname)-5s:%(asctime)s: %(message)s')
 
     main()
