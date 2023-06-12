@@ -150,5 +150,5 @@ def main():
 if __name__ == '__main__':
     
     logging.basicConfig(level=logging.WARNING, format='%(levelname)-5s:%(asctime)s: %(message)s')
-    cProfile.run('main()')
-    main()
+    cProfile.run(main())
+    """main()"""
