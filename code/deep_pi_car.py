@@ -8,6 +8,11 @@ import picar
 import datetime
 
 from hand_coded_lane_follower import HandCodedLaneFollower
+
+#Accelerator
+import tflite_runtime.interpreter as tflite
+
+import cProfile
 #Get the image
 
 
@@ -145,5 +150,5 @@ def main():
 if __name__ == '__main__':
     
     logging.basicConfig(level=logging.WARNING, format='%(levelname)-5s:%(asctime)s: %(message)s')
-    
+    cProfile.run('main()')
     main()
