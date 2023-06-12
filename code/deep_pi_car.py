@@ -100,7 +100,7 @@ class DeepPiCar(object):
         cv2.destroyAllWindows()
 
 
-    def drive(self,speed=5):
+    def drive(self,speed=20):
         """ Main entry point of the car, and put it in drive mode
 
         Keyword arguments:
@@ -122,7 +122,7 @@ class DeepPiCar(object):
             image_lane = self.follow_lane(image_lane)
             self.video_lane.write(image_lane)
             show_image('Lane Lines', image_lane)
-            print("decision", i)
+            
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         self.cleanup()
@@ -144,7 +144,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
             
 def main():
     car = DeepPiCar()
-    car.drive(20)
+    car.drive(40)
 
 
 if __name__ == '__main__':

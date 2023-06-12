@@ -27,6 +27,7 @@ class HandCodedLaneFollower(object):
         return final_frame,stop
 
     def steer(self, frame, lane_lines):
+        print("Mis à jour angle")
         logging.debug('steering...')
         if len(lane_lines) == 0:
             logging.error('No lane lines detected, nothing to do.')
