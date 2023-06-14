@@ -7,7 +7,7 @@ import sys
 
 
 
-_SHOW_IMAGE = False
+_SHOW_IMAGE = True
 showSlope = False
 
 class HandCodedLaneFollower(object):

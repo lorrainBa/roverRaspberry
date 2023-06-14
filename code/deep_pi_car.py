@@ -63,10 +63,11 @@ class DeepPiCar(object):
         datestr = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
         """self.video_orig = self.create_video_recorder('./data/tmp/car_video%s.avi' % datestr)
         """
+        
         #Enregistrer video sur le rover
-        """self.video_lane = self.create_video_recorder('../data/tmp/car_video_lane%s.avi' % datestr)"""
+        self.video_lane = self.create_video_recorder('../data/tmp/car_video_lane%s.avi' % datestr)
         #Enregistrer video sur la clef usb
-        self.video_lane = self.create_video_recorder('/mnt/rover/video/car_video_lane%s.avi' % datestr)
+        """self.video_lane = self.create_video_recorder('/mnt/rover/video/car_video_lane%s.avi' % datestr)"""
         
         
 
