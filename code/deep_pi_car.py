@@ -16,7 +16,7 @@ from hand_coded_lane_follower import HandCodedLaneFollower
 #Get the image
 
 
-_SHOW_IMAGE = False
+_SHOW_IMAGE = True
 
 
 class DeepPiCar(object):
