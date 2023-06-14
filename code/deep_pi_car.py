@@ -98,7 +98,7 @@ class DeepPiCar(object):
         self.video_lane.release()
         print("finito")
         print(os.listdir())
-        print("../"+os.listdir())
+        """print("../"+os.listdir())"""
         cv2.destroyAllWindows()
 
 
