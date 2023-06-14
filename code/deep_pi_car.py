@@ -115,9 +115,8 @@ class DeepPiCar(object):
 
         logging.info('Starting to drive at speed %s...' % speed)
         self.back_wheels.speed = speed
-        i = 0
-        exit_flag = False
-        while self.camera.isOpened() and not exit_flag:
+        i = 0   
+        while self.camera.isOpened():
             _, image_lane = self.camera.read()
             
             i += 1
@@ -131,7 +130,7 @@ class DeepPiCar(object):
             show_image('Lane Lines', image_lane)
             
             if cv2.waitKey(1) & 0xFF == ord('q'):
-                exit_flag = True
+                break
         self.cleanup()
             
     def follow_lane(self, image):
@@ -151,7 +150,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
             
 def main():
     car = DeepPiCar()
-    car.drive(80)
+    car.drive(30)
 
 
 if __name__ == '__main__':
