@@ -16,7 +16,7 @@ from hand_coded_lane_follower import HandCodedLaneFollower
 #Get the image
 
 
-_SHOW_IMAGE = True
+_SHOW_IMAGE = False
 
 
 class DeepPiCar(object):
@@ -97,6 +97,8 @@ class DeepPiCar(object):
         
         self.video_lane.release()
         print("finito")
+        print(os.listdir())
+        print("../"+os.listdir())
         cv2.destroyAllWindows()
 
 
