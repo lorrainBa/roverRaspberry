@@ -65,7 +65,7 @@ class DeepPiCar(object):
         """
         
         #Enregistrer video sur le rover
-        print("-----------",os.listdir())
+        print("-----------","../"+os.listdir())
 
         self.video_lane = self.create_video_recorder('../data/tmp/car_video_lane%s.avi' % datestr)
         #Enregistrer video sur la clef usb
