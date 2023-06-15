@@ -18,7 +18,7 @@ from hand_coded_lane_follower import HandCodedLaneFollower
 
 _SHOW_IMAGE = True
 
-print("-------------------------------------------------------------------")
+
 class DeepPiCar(object):
 
     __INITIAL_SPEED = 0
@@ -65,11 +65,10 @@ class DeepPiCar(object):
         """
         
         #Enregistrer video sur le rover
-        print("-----------",os.listdir("/mnt/rover"))
 
-        """self.video_lane = self.create_video_recorder('../data/tmp/car_video_lane%s.avi' % datestr)"""
+        self.video_lane = self.create_video_recorder('../data/tmp/car_video_lane%s.avi' % datestr)
         #Enregistrer video sur la clef usb  
-        self.video_lane = self.create_video_recorder('/mnt/rover/video/car_video_lane%s.avi' % datestr)
+        """self.video_lane = self.create_video_recorder('/mnt/rover/video/car_video_lane%s.avi' % datestr)"""
         if self.video_lane is None:
             print("Erreur création video")
         else:
