@@ -138,8 +138,8 @@ class DeepPiCar(object):
                 break
         self.cleanup()
             
-    def follow_lane(self, image):
-        image,stop = self.lane_follower.follow_lane(image)
+    def follow_lane(self, image,speed):
+        image,stop = self.lane_follower.follow_lane(image,speed)
         if stop :
             logging.info('No lane lines detected, nothing to do ################################################.')
             logging.info('No lane lines detected, nothing to do.################################################. fd')
@@ -155,7 +155,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
             
 def main():
     car = DeepPiCar()
-    car.drive(40)
+    car.drive(35)
 
 
 if __name__ == '__main__':

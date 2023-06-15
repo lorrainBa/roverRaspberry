@@ -17,16 +17,16 @@ class HandCodedLaneFollower(object):
         self.car = car
         self.curr_steering_angle = 90
 
-    def follow_lane(self, frame):
+    def follow_lane(self, frame, speed):
         # Main entry point of the lane follower
         show_image("orig", frame)
 
         lane_lines, frame = detect_lane(frame)
-        final_frame, stop = self.steer(frame, lane_lines)
+        final_frame, stop = self.steer(frame, lane_lines,speed)
 
         return final_frame,stop
 
-    def steer(self, frame, lane_lines):
+    def steer(self, frame, lane_lines,speed):
         print("Mis à jour angle")
         logging.debug('steering...')
         if len(lane_lines) == 0:
@@ -34,7 +34,7 @@ class HandCodedLaneFollower(object):
             return frame,True
 
         new_steering_angle = compute_steering_angle(frame, lane_lines)
-        self.curr_steering_angle = stabilize_steering_angle(self.curr_steering_angle, new_steering_angle, len(lane_lines))
+        self.curr_steering_angle = stabilize_steering_angle(self.curr_steering_angle, new_steering_angle, len(lane_lines),speed)
 
         if self.car is not None:
             self.car.front_wheels.turn(self.curr_steering_angle)
@@ -79,7 +79,10 @@ def compute_steering_angle(frame, lane_lines):
     return steering_angle
 
 
-def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=10, max_angle_deviation_one_lane=3):
+def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=10, max_angle_deviation_one_lane=3, speed = 50):
+    
+    #Max angle deviation coef depends on the speed of the robot
+    max_angle_deviation = max_angle_deviation * 50 / speed
     """
     Using last steering angle to stabilize the steering angle
     This can be improved to use last N angles, etc
