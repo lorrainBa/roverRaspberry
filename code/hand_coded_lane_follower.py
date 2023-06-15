@@ -12,11 +12,18 @@ showSlope = False
 
 class HandCodedLaneFollower(object):
 
+
     def __init__(self, car=None):
         logging.info('Creating a HandCodedLaneFollower...')
         self.car = car
         self.curr_steering_angle = 90
 
+        
+        #Infor if the current line is new or not
+        self.leftLineAge = 0
+        self.rightLineAge = 0
+        
+        
     def follow_lane(self, frame, speed):
         # Main entry point of the lane follower
         show_image("orig", frame)
@@ -222,7 +229,7 @@ def detect_line_segments(cropped_edges):
     # tuning min_threshold, minLineLength, maxLineGap is a trial and error process by hand
     rho = 1  # precision in pixel, i.e. 1 pixel
     angle = np.pi / 180  # degree in radian, i.e. 1 degree
-    min_threshold = 15  # minimal of votes
+    min_threshold = 13  # minimal of votes
     line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), minLineLength=8,
                                     maxLineGap=4)
 
@@ -234,7 +241,12 @@ def detect_line_segments(cropped_edges):
     return line_segments
 
 
-def average_slope_intercept(frame, line_segments):
+leftLineAge = 0
+rightLineAge = 0
+
+def average_slope_intercept(self,frame, line_segments):
+    global leftLineAge
+    global rightLineAge
     """
     This function combines line segments into one or two lane lines
     If all line slopes are < 0: then we only have detected left lane
@@ -270,11 +282,19 @@ def average_slope_intercept(frame, line_segments):
 
     left_fit_average = np.average(left_fit, axis=0)
     if len(left_fit) > 0:
-        lane_lines.append(make_points(frame, left_fit_average))
+        leftLineAge += 1
+        if rightLineAge > 3:
+            lane_lines.append(make_points(frame, left_fit_average))
+    else:
+        leftLineAge = 0
 
     right_fit_average = np.average(right_fit, axis=0)
     if len(right_fit) > 0:
-        lane_lines.append(make_points(frame, right_fit_average))
+        rightLineAge += 1
+        if rightLineAge > 3:
+            lane_lines.append(make_points(frame, right_fit_average))
+    else:
+        rightLineAge = 0
 
     logging.debug('lane lines: %s' % lane_lines)  # [[[316, 720, 484, 432]], [[1009, 720, 718, 432]]]
 
