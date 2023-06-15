@@ -72,6 +72,8 @@ class DeepPiCar(object):
         self.video_lane = self.create_video_recorder('/mnt/rover/video/car_video_lane%s.avi' % datestr)
         if self.video_lane is None:
             print("Erreur création video")
+        else:
+            print("Video bien demarrer")
         
         
 
