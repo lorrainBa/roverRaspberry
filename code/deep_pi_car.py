@@ -155,7 +155,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
             
 def main():
     car = DeepPiCar()
-    car.drive(70)
+    car.drive(35)
 
 
 if __name__ == '__main__':
