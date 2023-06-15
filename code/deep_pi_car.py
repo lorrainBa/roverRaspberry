@@ -130,7 +130,7 @@ class DeepPiCar(object):
             """
 
 
-            image_lane = self.follow_lane(image_lane)
+            image_lane = self.follow_lane(image_lane,speed)
             self.video_lane.write(image_lane)
             show_image('Lane Lines', image_lane)
             
