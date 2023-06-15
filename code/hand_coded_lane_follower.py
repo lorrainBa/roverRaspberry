@@ -79,11 +79,11 @@ def compute_steering_angle(frame, lane_lines):
     return steering_angle
 
 
-def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=3, max_angle_deviation_one_lane=5, speed = 50):
+def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=5, max_angle_deviation_one_lane=5, speed = 50):
     
     #Max angle deviation coef depends on the speed of the robot
-    max_angle_deviation_two_lines = max_angle_deviation_two_lines * 50 / speed
-    max_angle_deviation_one_lane = max_angle_deviation_one_lane * 50 / speed
+    max_angle_deviation_two_lines = max_angle_deviation_two_lines * 70 / speed
+    max_angle_deviation_one_lane = max_angle_deviation_one_lane * 70 / speed
     """
     Using last steering angle to stabilize the steering angle
     This can be improved to use last N angles, etc
