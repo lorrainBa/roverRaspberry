@@ -18,7 +18,7 @@ from hand_coded_lane_follower import HandCodedLaneFollower
 
 _SHOW_IMAGE = True
 
-
+print("-------------------------------------------------------------------")
 class DeepPiCar(object):
 
     __INITIAL_SPEED = 0
