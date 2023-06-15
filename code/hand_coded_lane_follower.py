@@ -244,7 +244,7 @@ def detect_line_segments(cropped_edges):
 leftLineAge = 0
 rightLineAge = 0
 
-def average_slope_intercept(self,frame, line_segments):
+def average_slope_intercept(frame, line_segments):
     global leftLineAge
     global rightLineAge
     """
