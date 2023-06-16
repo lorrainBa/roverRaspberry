@@ -291,7 +291,7 @@ def average_slope_intercept(frame, line_segments):
     right_fit_average = np.average(right_fit, axis=0)
     if len(right_fit) > 0:
         rightLineAge += 1
-        if rightLineAge > 20:
+        if leftLineAge > 20:
             lane_lines.append(make_points(frame, right_fit_average))
     else:
         rightLineAge = 0
