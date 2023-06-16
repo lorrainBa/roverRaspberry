@@ -20,8 +20,8 @@ class HandCodedLaneFollower(object):
 
         
         #Infor if the current line is new or not
-        self.leftLineAge = 0
-        self.rightLineAge = 0
+        self.leftLineAge = 15
+        self.rightLineAge = 15
         
         
     def follow_lane(self, frame, speed):
