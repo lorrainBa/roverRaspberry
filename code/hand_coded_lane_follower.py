@@ -299,7 +299,7 @@ def average_slope_intercept(frame, line_segments):
     print("-> right age:  ", rightLineAge)
     print("<- left age:  ", leftLineAge)
     logging.debug('lane lines: %s' % lane_lines)  # [[[316, 720, 484, 432]], [[1009, 720, 718, 432]]]
-
+    print(lane_lines)
     return lane_lines
 
 
