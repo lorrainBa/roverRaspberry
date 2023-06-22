@@ -50,7 +50,12 @@ class HandCodedLaneFollower(object):
             #Adapt the speed 
             
             #Formula to get new Speed, to go forward the angle is 90, if the angle is far from 90 then it slow
-            newSpeed = int(speed - (4*(90-self.curr_steering_angle))**2/400)
+            speedChange = speed - int((4*(90-self.curr_steering_angle))**2/400)
+            #Always have 15 as a minimum speed
+            if speedChange > 15:
+                newSpeed = speedChange
+            else:
+                newSpeed = 15
             print("------------------",newSpeed)
         curr_heading_image = display_heading_line(frame, self.curr_steering_angle)
         show_image("heading", curr_heading_image)
