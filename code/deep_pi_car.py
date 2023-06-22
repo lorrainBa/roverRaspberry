@@ -125,7 +125,7 @@ class DeepPiCar(object):
         i = 0   
         
         while self.camera.isOpened():
-            self.back_wheels.speed=10
+            self.back_wheels.speed=80
             _, image_lane = self.camera.read()
             
             i += 1
