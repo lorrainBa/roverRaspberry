@@ -125,7 +125,7 @@ class DeepPiCar(object):
         i = 0   
         
         while self.camera.isOpened():
-            self.back_wheels.speed=80
+            
             _, image_lane = self.camera.read()
             
             i += 1
@@ -134,22 +134,25 @@ class DeepPiCar(object):
             """
 
 
-            image_lane = self.follow_lane(image_lane,speed)
+            image_lane,newSpeed = self.follow_lane(image_lane,speed)
             self.video_lane.write(image_lane)
             show_image('Lane Lines', image_lane)
+            
+            #Adapt the speed
+            self.back_wheels.speed=newSpeed
             
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         self.cleanup()
             
     def follow_lane(self, image,speed):
-        image,stop = self.lane_follower.follow_lane(image,speed)
+        image,stop,newSpeed = self.lane_follower.follow_lane(image,speed)
         if stop :
             logging.info('No lane lines detected, nothing to do ################################################.')
             logging.info('No lane lines detected, nothing to do.################################################. fd')
             self.back_wheels.speed = 0
             self.front_wheels.turn(90)
-        return image
+        return image,newSpeed
 
             
 def show_image(title, frame, show=_SHOW_IMAGE):
