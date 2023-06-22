@@ -78,9 +78,24 @@ def compute_steering_angle(frame, lane_lines):
     else:
         _, _, left_x2, _ = lane_lines[0][0]
         _, _, right_x2, _ = lane_lines[1][0]
-        camera_mid_offset_percent = 0.02 # 0.0 means car pointing to center, -0.03: car is centered to left, +0.03 means car pointing to right
-        mid = int(width / 2 * (1 + camera_mid_offset_percent))
-        x_offset = (left_x2 + right_x2) / 2 - mid
+        #If left line goes after the right line then one of the line is a false detection and we have to get rid of the new one
+        if left_x2 > right_x2:
+            if leftLineAge > rightLineAge:
+                logging.debug('Only detected one lane line, just follow it. %s' % lane_lines[0])
+                x1, _, x2, _ = lane_lines[0][0]
+                x_offset = x2 - x1
+                x_offset = x_offset/7
+                print("X OFFSET", x_offset)
+            else:
+                logging.debug('Only detected one lane line, just follow it. %s' % lane_lines[0])
+                x1, _, x2, _ = lane_lines[1][0]
+                x_offset = x2 - x1
+                x_offset = x_offset/7
+                print("X OFFSET", x_offset)
+        else:
+            camera_mid_offset_percent = 0.02 # 0.0 means car pointing to center, -0.03: car is centered to left, +0.03 means car pointing to right
+            mid = int(width / 2 * (1 + camera_mid_offset_percent))
+            x_offset = (left_x2 + right_x2) / 2 - mid
 
     # find the steering angle, which is angle between navigation direction to end of center line
     y_offset = int(height / 2)
