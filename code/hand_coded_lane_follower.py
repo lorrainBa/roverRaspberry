@@ -29,26 +29,31 @@ class HandCodedLaneFollower(object):
         show_image("orig", frame)
 
         lane_lines, frame = detect_lane(frame)
-        final_frame, stop = self.steer(frame, lane_lines,speed)
+        final_frame, stop, newSpeed = self.steer(frame, lane_lines,speed)
 
-        return final_frame,stop
+        return final_frame,stop,newSpeed
 
     def steer(self, frame, lane_lines,speed):
+        newSpeed = speed
+        
         print("Mis à jour angle")
         logging.debug('steering...')
         if len(lane_lines) == 0:
             logging.error('No lane lines detected, nothing to do.')
-            return frame,False
+            return frame,False,0
 
         new_steering_angle = compute_steering_angle(frame, lane_lines)
         self.curr_steering_angle = stabilize_steering_angle(self.curr_steering_angle, new_steering_angle, len(lane_lines),speed)
 
         if self.car is not None:
             self.car.front_wheels.turn(self.curr_steering_angle)
+            #Adapt the speed 
+            print("------------------",self.curr_steering_angle)
+            newSpeed = speed 
         curr_heading_image = display_heading_line(frame, self.curr_steering_angle)
         show_image("heading", curr_heading_image)
 
-        return curr_heading_image, False
+        return curr_heading_image, False, newSpeed
 
 
 
