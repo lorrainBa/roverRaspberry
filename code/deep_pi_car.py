@@ -119,9 +119,13 @@ class DeepPiCar(object):
         """
 
         logging.info('Starting to drive at speed %s...' % speed)
+        
+        #Init speed at speedInput
         self.back_wheels.speed = speed
         i = 0   
+        
         while self.camera.isOpened():
+            self.back_wheels.speed=10
             _, image_lane = self.camera.read()
             
             i += 1
@@ -155,7 +159,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
             
 def main():
     car = DeepPiCar()
-    car.drive(60)
+    car.drive(30)
 
 
 if __name__ == '__main__':
