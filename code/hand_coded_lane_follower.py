@@ -73,7 +73,7 @@ def compute_steering_angle(frame, lane_lines):
         logging.debug('Only detected one lane line, just follow it. %s' % lane_lines[0])
         x1, _, x2, _ = lane_lines[0][0]
         x_offset = x2 - x1
-        x_offset = x_offset/3
+        x_offset = x_offset/20
         print("X OFFSET", x_offset)
     else:
         _, _, left_x2, _ = lane_lines[0][0]
@@ -93,7 +93,7 @@ def compute_steering_angle(frame, lane_lines):
     return steering_angle
 
 
-def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=10, max_angle_deviation_one_lane=10, speed = 50):
+def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=2, max_angle_deviation_one_lane=2, speed = 50):
     
     #Max angle deviation coef depends on the speed of the robot
     max_angle_deviation_two_lines = max_angle_deviation_two_lines * 70 / speed
