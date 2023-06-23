@@ -3,6 +3,7 @@ import os
 import numpy as np
 import logging
 import math
+import sys
 
 import picar
 import datetime
@@ -161,9 +162,11 @@ def show_image(title, frame, show=_SHOW_IMAGE):
     
             
 def main():
-    print("Avant l'attente")
-    time.sleep(15)  # Attente de 5 secondes
-    print("Après l'attente")
+    if len(sys.argv) > 1 and sys.argv[1] == "w":
+    # La lettre "w" a été passée comme argument, activer la fonctionnalité correspondante
+        print("Avant l'attente")
+        time.sleep(15)  # Attente de 5 secondes
+        print("Après l'attente")
     car = DeepPiCar()
     car.drive(100)
 
