@@ -168,7 +168,7 @@ def main():
         time.sleep(15)  # Attente de 5 secondes
         print("Après l'attente")
     car = DeepPiCar()
-    car.drive(100)
+    car.drive(80)
 
 
 if __name__ == '__main__':
