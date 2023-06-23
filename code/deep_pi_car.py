@@ -162,7 +162,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
             
 def main():
     print("Avant l'attente")
-    time.sleep(10)  # Attente de 5 secondes
+    time.sleep(15)  # Attente de 5 secondes
     print("Après l'attente")
     car = DeepPiCar()
     car.drive(100)
