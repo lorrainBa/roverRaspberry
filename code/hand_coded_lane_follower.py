@@ -50,7 +50,7 @@ class HandCodedLaneFollower(object):
             #Adapt the speed 
             
             #Formula to get new Speed, to go forward the angle is 90, if the angle is far from 90 then it slow
-            speedChange = speed - int((2*(90-self.curr_steering_angle))**2/(speed*2))
+            speedChange = speed - int((2*(90-self.curr_steering_angle))**2/(speed))
             #Always have 15 as a minimum speed
             if speedChange > 20:
                 
@@ -346,7 +346,7 @@ def make_points(frame, line):
     # bound the coordinates within the frame
     if showSlope:
         print("slope:  ", slope)
-    x1 = max(-width, min(2 * width, int((y1 - intercept) / (slope+0.0000001))))
+    x1 = max(-width, min(2 * width, int((y1 - intercept) / (slope+                        0.0000001))))
     x2 = max(-width, min(2 * width, int((y2 - intercept) / (slope+0.0000001))))
     return [[x1, y1, x2, y2]]
 
