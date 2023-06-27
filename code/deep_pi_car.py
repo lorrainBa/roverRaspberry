@@ -39,11 +39,11 @@ class DeepPiCar(object):
 
         self.pan_servo = picar.Servo.Servo(1)
         self.pan_servo.offset = -20  # calibrate servo to center
-        self.pan_servo.write(100)
+        self.pan_servo.write(110)
 
         self.tilt_servo = picar.Servo.Servo(2)
         self.tilt_servo.offset = 20  # calibrate servo to center
-        self.tilt_servo.write(100)
+        self.tilt_servo.write(110)
 
         logging.debug('Set up back wheels')
         self.back_wheels = picar.back_wheels.Back_Wheels()
