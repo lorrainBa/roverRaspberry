@@ -4,8 +4,13 @@ import logging
 import math
 import datetime
 import sys
+from collections import deque
 
 
+timeToReact = 10
+steerAngleSpeedMemory = deque()
+for _ in range (timeToReact):
+    steerAngleSpeedMemory.append((90,0))
 
 _SHOW_IMAGE = False
 showSlope = False
@@ -41,25 +46,31 @@ class HandCodedLaneFollower(object):
         if len(lane_lines) == 0:
             logging.error('No lane lines detected, nothing to do.')
             return frame,False,0
-
+        #Find the new steering angle
         new_steering_angle = compute_steering_angle(frame, lane_lines)
         self.curr_steering_angle = stabilize_steering_angle(self.curr_steering_angle, new_steering_angle, len(lane_lines),speed)
-
+        
+        #Formula to get new Speed, to go forward the angle is 90, if the angle is far from 90 then it slow
+        speedChange = speed - int(((90-self.curr_steering_angle))**2/(speed)*1.5)
+        
+        #Put the new speed and steering angle in the memory
+        steerAngleSpeedMemory.append( self.curr_steering_angle , speedChange )
+        
         if self.car is not None:
-            self.car.front_wheels.turn(self.curr_steering_angle)
+            memoryAngle , memorySpeed = steerAngleSpeedMemory.popleft()
+            self.car.front_wheels.turn(memoryAngle)
             #Adapt the speed 
             
-            #Formula to get new Speed, to go forward the angle is 90, if the angle is far from 90 then it slow
-            speedChange = speed - int(((90-self.curr_steering_angle))**2/(speed)*1.5)
+            
             #Always have 15 as a minimum speed
-            if speedChange > 20:
+            if memorySpeed > 20:
                 
-                if speedChange > speed +30:
-                    speedChange = speed +30
-                elif speedChange  < speed -30:
-                    speedChange = speed -30
+                if memorySpeed > speed +30:
+                    memorySpeed = speed +30
+                elif memorySpeed  < speed -30:
+                    memorySpeed = speed -30
                 else:
-                    newSpeed = speedChange
+                    newSpeed = memorySpeed
             else:
                 newSpeed = 20
             print("------------------",newSpeed)
@@ -118,7 +129,7 @@ def compute_steering_angle(frame, lane_lines):
     return steering_angle
 
 
-def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=4, max_angle_deviation_one_lane=10, speed = 50):
+def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lines=4, max_angle_deviation_one_lane=5, speed = 50):
     
     #Max angle deviation coef depends on the speed of the robot
     max_angle_deviation_two_lines = max_angle_deviation_two_lines * 70 / speed
