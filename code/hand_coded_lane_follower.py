@@ -7,7 +7,7 @@ import sys
 from collections import deque
 
 
-timeToReact = 10
+timeToReact = 20
 steerAngleSpeedMemory = deque()
 for _ in range (timeToReact):
     steerAngleSpeedMemory.append((90,0))
@@ -54,7 +54,7 @@ class HandCodedLaneFollower(object):
         speedChange = speed - int(((90-self.curr_steering_angle))**2/(speed)*1.5)
         
         #Put the new speed and steering angle in the memory
-        steerAngleSpeedMemory.append( (self.curr_steering_angle , speedChange) )
+        steerAngleSpeedMemory.append( (qqqqqqq) )
         
         if self.car is not None:
             memoryAngle , memorySpeed = steerAngleSpeedMemory.popleft()
