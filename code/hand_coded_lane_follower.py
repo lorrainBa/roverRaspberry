@@ -54,7 +54,7 @@ class HandCodedLaneFollower(object):
         speedChange = speed - int(((90-self.curr_steering_angle))**2/(speed)*1.5)
         
         #Put the new speed and steering angle in the memory
-        steerAngleSpeedMemory.append( self.curr_steering_angle , speedChange )
+        steerAngleSpeedMemory.append( (self.curr_steering_angle , speedChange) )
         
         if self.car is not None:
             memoryAngle , memorySpeed = steerAngleSpeedMemory.popleft()
