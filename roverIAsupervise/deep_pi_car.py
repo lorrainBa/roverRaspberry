@@ -3,7 +3,7 @@ import picar
 import cv2
 import datetime
 from end_to_end_lane_follower import EndToEndLaneFollower
-
+import keyboard
 
 _SHOW_IMAGE = True
 
@@ -121,7 +121,7 @@ class DeepPiCar(object):
             if cv2.waitKey(1) & 0xFF == ord('s'):
                 self.back_wheels.speed = 0
 
-            if cv2.waitKey(1) & 0xFF == ord('g'):
+            if keyboard.is_pressed('g'):
                 self.back_wheels.speed = speed
 
 
