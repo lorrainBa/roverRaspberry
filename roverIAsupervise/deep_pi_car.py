@@ -3,7 +3,7 @@ import picar
 import cv2
 import datetime
 from end_to_end_lane_follower import EndToEndLaneFollower
-import keyboard
+
 
 _SHOW_IMAGE = True
 
@@ -113,15 +113,15 @@ class DeepPiCar(object):
             self.video_lane.write(image_lane)
             show_image('Lane Lines', image_lane)
 
-
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord('q'):
                 self.cleanup()
                 break
 
-            if cv2.waitKey(1) & 0xFF == ord('s'):
+            if key == ord('s'):
                 self.back_wheels.speed = 0
 
-            if keyboard.is_pressed('g'):
+            if key == ord('g'):
                 self.back_wheels.speed = speed
 
 
