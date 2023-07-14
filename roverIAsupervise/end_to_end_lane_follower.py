@@ -2,7 +2,9 @@ import cv2
 import numpy as np
 import logging
 import math
-from tensorflow.keras.models import load_model
+
+
+from tflite_runtime import edgetpu
 
 _SHOW_IMAGE = False
 
@@ -16,7 +18,7 @@ class EndToEndLaneFollower(object):
 
         self.car = car
         self.curr_steering_angle = 90
-        self.model = load_model(model_path)
+        self.model = edgetpu.basic.BasicEngine(model_path)
 
     def follow_lane(self, frame):
         # Main entry point of the lane follower
