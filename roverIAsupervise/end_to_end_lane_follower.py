@@ -4,7 +4,7 @@ import logging
 import math
 
 
-from tflite_runtime import edgetpu
+
 
 _SHOW_IMAGE = False
 
@@ -18,7 +18,12 @@ class EndToEndLaneFollower(object):
 
         self.car = car
         self.curr_steering_angle = 90
-        self.model = edgetpu.basic.BasicEngine(model_path)
+        
+         # Load TFLite model
+        self.interpreter = tf.lite.Interpreter(model_path=model_path)
+        self.interpreter.allocate_tensors()
+        self.input_details = self.interpreter.get_input_details()
+        self.output_details = self.interpreter.get_output_details()
 
     def follow_lane(self, frame):
         # Main entry point of the lane follower
@@ -43,7 +48,13 @@ class EndToEndLaneFollower(object):
         logging.debug('________________________________________')
         logging.debug('________________________________________')
         logging.debug('________________________________________')
-        steering_angle = self.model.predict(X)[0]
+        input_data = np.array(X, dtype=np.float32)
+
+        self.interpreter.set_tensor(self.input_details[0]['index'], input_data)
+        self.interpreter.invoke()
+        output_data = self.interpreter.get_tensor(self.output_details[0]['index'])
+
+        steering_angle = output_data[0]
         # if the steering angle is in between 60 and 120 just go straight
         if steering_angle > 80 and steering_angle < 100:
             steering_angle = 90
