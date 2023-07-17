@@ -4,7 +4,7 @@ import logging
 import math
 
 
-from tflite_runtime import edgetpu
+from edgetpu.basic import BasicEngine
 
 _SHOW_IMAGE = False
 
@@ -18,7 +18,7 @@ class EndToEndLaneFollower(object):
 
         self.car = car
         self.curr_steering_angle = 90
-        self.model = edgetpu.basic.BasicEngine(model_path)
+        self.model = BasicEngine(model_path)
 
     def follow_lane(self, frame):
         # Main entry point of the lane follower
